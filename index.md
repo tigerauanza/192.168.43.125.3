@@ -2,11 +2,11 @@
 
 <script>
 
-  const APPID = "Toralightserver";
-  const KEY = "m0TvcjEYOswzxpn";
-  const SECRET = "wYU8cLHrzroCKH6zz208VxW9i";
+  const APPID = "toralight";
+  const KEY = "R3TGBZJidwILREF";
+  const SECRET = "ViBSyg8NZyCZFXbJfBvDuQfCa";
 
-  const ALIAS = "http://192.168.43.125";     //  ชื่อตัวเอง
+  const ALIAS = "http://192.168.43.125/LED=OFF";     //  ชื่อตัวเอง
   const thing1 = "Toralight";                                   //  ชื่อเพื่อนที่จะคุย
 
   function switchPress(logic){
