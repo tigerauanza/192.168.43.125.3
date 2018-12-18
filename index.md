@@ -1,37 +1,58 @@
-## Welcome to GitHub Pages
+<script src="https://cdn.netpie.io/microgear.js"></script>
 
-You can use the [editor on GitHub](https://github.com/tigerauanza/192.168.43.125/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+<script>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+  const APPID = "Toralightserver";
+  const KEY = "m0TvcjEYOswzxpn";
+  const SECRET = "wYU8cLHrzroCKH6zz208VxW9i";
 
-### Markdown
+  const ALIAS = "http://192.168.43.125";     //  ชื่อตัวเอง
+  const thing1 = "Toralight";                                   //  ชื่อเพื่อนที่จะคุย
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+  function switchPress(logic){
+    if(logic == 1 ){
+      microgear.chat(thing1,"ON");
+    }else if(logic == 0 ){
+      microgear.chat(thing1,"OFF");
+    }
+  }
 
-```markdown
-Syntax highlighted code block
+  var microgear = Microgear.create({
+    key: KEY,
+    secret: SECRET,
+    alias : ALIAS
+  });
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+  microgear.on('message', function(topic,data) {
+    if(data=="ON"){
+      document.getElementById("Status").innerHTML =  "Load is ON.";
+    }else if(data=="OFF"){
+      document.getElementById("Status").innerHTML =  "Load is OFF."; 
+    }
+  });
 
-1. Numbered
-2. List
+  microgear.on('connected', function() {
+    microgear.setAlias(ALIAS);
+    document.getElementById("connected_NETPIE").innerHTML = "Connected to NETPIE"
+  });
 
-**Bold** and _Italic_ and `Code` text
+  microgear.on('present', function(event) {
+    console.log(event);
+  });
 
-[Link](url) and ![Image](src)
-```
+  microgear.on('absent', function(event) {
+    console.log(event);
+  });
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+  microgear.resettoken(function(err) {
+    microgear.connect(APPID);
+  });
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/tigerauanza/192.168.43.125/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+</script>
+<center>
+  <h1 id="connected_NETPIE"></h1>
+  <button type="button" onclick="switchPress(1)">Turn ON</button>
+  <button type="button" onclick="switchPress(0)">Turn OFF</button>
+  <p><strong id="Status">Load is OFF.</strong></p>
+</center>
