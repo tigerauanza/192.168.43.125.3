@@ -3,7 +3,7 @@
 <script>
 
   const APPID = "toralight";
-  const KEY = "R3TGBZJidwILREF";
+  const KEY = "wYU8cLHrzroCKH6zz208VxW9i";
   const SECRET = "ViBSyg8NZyCZFXbJfBvDuQfCa";
 
   const ALIAS = "http://192.168.43.125/LED=OFF";     //  ชื่อตัวเอง
